@@ -2,7 +2,7 @@ import * as React from "react";
 import { inject, observer } from "mobx-react";
 
 import { System } from "../model/system";
-import { CodeStore } from "../model/money-store";
+import { CodeStore } from "../model/code-store";
 
 interface MainParameters {
   codeStore: CodeStore;
