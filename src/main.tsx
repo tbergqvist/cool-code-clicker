@@ -1,20 +1,15 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import * as React from "react";
+import * as ReactDom from "react-dom";
+import { Provider } from "mobx-react";
 
-import { App } from "./app";
-import {observer} from 'mobx-react';
-
-const app = new App();
-
-const Main = observer(({app}: {app: App}) =>
-  <div>
-    <span>Code: {app.code}</span>
-    <div>
-      <button onClick={()=>app.increaseCode(1)}>Do code</button>
-    </div>
-  </div>
-);
+import { system } from "./model/system";
+import { App } from "./view/app";
 
 setTimeout(()=> {
-  ReactDom.render(<Main app={app}/>, document.getElementById("app")!);
+  ReactDom.render(
+    <Provider {...system}>
+      <App />
+    </Provider>
+    , 
+    document.getElementById("app")!);
 });

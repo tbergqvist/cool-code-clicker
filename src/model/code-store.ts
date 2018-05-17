@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-export class App {
+export class CodeStore {
   @observable code = 0;
 
   @action
