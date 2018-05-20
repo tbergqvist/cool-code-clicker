@@ -2,6 +2,7 @@ import { observable, when, computed } from "mobx";
 import { CodeProject } from "./code-project";
 import { Unlockables } from "./unlockables";
 import { Resources } from "./resources";
+import { Research } from "./research";
 
 export class CodeProjects {
   @observable 
@@ -9,8 +10,10 @@ export class CodeProjects {
 
   constructor(
     private _unlockables: Unlockables,
-    private _resources: Resources) {
-      this._currentProject = new CodeProject(10, "Cool stuff", 10);
+    private _resources: Resources,
+    private _research: Research
+  ) {
+      this._currentProject = new CodeProject(10, "Cool stuff", 10, _research);
 
       when(
         ()=> this._currentProject.targetReached,
@@ -20,8 +23,8 @@ export class CodeProjects {
 
   private newProject() {
     this._unlockables.unlockMoney();
-    this._resources.addMoney(this._currentProject.profit);
-    this._currentProject = new CodeProject(10, "Cool stuff", 10);
+    this._resources.depositMoney(this._currentProject.profit);
+    this._currentProject = new CodeProject(10, "Cool stuff", 10, this._research);
 
     when(
       ()=> this._currentProject.targetReached,

@@ -5,8 +5,14 @@ export class Resources {
   private _money = 0;
 
   @action
-  addMoney(amount: number) {
+  depositMoney(amount: number) {
     this._money += amount;
+  }
+
+  @action
+  withdrawMoney(amount: number) {
+    //TODO: make sure we have the money
+    this._money -= amount;
   }
 
   @computed
