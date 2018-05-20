@@ -1,11 +1,16 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 
 export class Unlockables {
   @observable
-  unlockedMoney = false;
+  private _unlockedMoney = false;
 
   @action
   unlockMoney() {
-    this.unlockedMoney = true;
+    this._unlockedMoney = true;
+  }
+
+  @computed
+  get unlockedMoney() {
+    return this._unlockedMoney;
   }
 }
